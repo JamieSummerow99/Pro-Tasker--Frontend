@@ -1,3 +1,7 @@
+
+
+
+
 function ProjectCard({ project }) {
   return (
     <div className="project-card">
