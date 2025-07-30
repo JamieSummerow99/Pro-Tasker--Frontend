@@ -30,6 +30,7 @@ const handleSubmit = async (e) => {
     } catch (error) {
         console.log(error);     
     }
+    navigate('/welcome');
   };
 
 
