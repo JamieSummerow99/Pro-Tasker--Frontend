@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  
 
   const [formData, setFormData] = useState({
     username: "",

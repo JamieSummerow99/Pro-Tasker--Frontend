@@ -5,7 +5,8 @@ import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import FeedPage from "./pages/Feed";
 import WelcomePage from "./pages/Welcome";
-// Removed unused WelcomePage import
+import ErrorPage from "./pages/Error";
+
 
 import "./App.css";
  
@@ -17,9 +18,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/feed" element={<FeedPage />} />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
+        <Route path="/projects" element={<FeedPage />} />
+        
         <Route path="/welcome" element={<WelcomePage />}/>
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -19,14 +19,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
 
-useEffect(() => {
-  const storedToken = localStorage.getItem("token");
-  if (storedToken) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
-    getCurrentUser();
-  }
-},[]);
-
 const getCurrentUser = async () => {
   try {
     const response = await axios.get("/api/users/me");
@@ -38,6 +30,14 @@ const getCurrentUser = async () => {
     setToken(null);
   }
 };
+
+useEffect(() => {
+  const storedToken = localStorage.getItem("token");
+  if (storedToken) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+    getCurrentUser();
+  }
+},[]);
 
 
   

@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 function WelcomePage() {
   const navigate = useNavigate();
     const handleNavigation = () => {
-        navigate('/Projects');
+        navigate('/projects');
     };
   return (
     <div className="App">
       
       <h2>Welcome to the Pro-Task App</h2>
       <p>This is the main application page.</p>
-      <p> To get started with your Pro Tasker🌠, <a href="/feed">click here</a> to continue into the app!</p>
+      <p> To get started with your Pro Tasker🌠, <a href="/projects">click here</a> to continue into the app!</p>
     </div>
   );
 }

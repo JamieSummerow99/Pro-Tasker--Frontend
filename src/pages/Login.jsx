@@ -30,6 +30,7 @@ const handleSubmit = async (e) => {
     } catch (error) {
         console.log(error);     
     }
+    
     navigate('/welcome');
   };
 
@@ -46,15 +47,15 @@ const handleSubmit = async (e) => {
       
 
         <label htmlFor="username">Username</label>
-        <input type="text" name="username" placeholder="User Name" value={formData.username} onChange={handleChange} />
+        <input type="text" name="username" placeholder="User Name" value={formData.username} onChange={handleChange} required />
 
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required/>
 
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
+        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange}required />
 
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login"  />
         <p>Don't have an account? <a href="/register">Register here</a></p>
       </form>
     </main>
