@@ -1,21 +1,22 @@
 import { useState } from "react";
+
 import { backendClient } from "../client/backendClient";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  
+
 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    password: "",
+    password: ""
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+//no clicky and go
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,7 +37,7 @@ function RegisterPage() {
   return (
     <main>
       <h1>Regististration Page </h1>
-      <p>Register to create an account!!!</p>
+      <p>Register to create an account</p>
 
       <form container="registration" onSubmit={handleSubmit} method="POST">
         <label htmlFor="username">Username</label>

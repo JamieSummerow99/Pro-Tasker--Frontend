@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { backendClient } from "../client/backendClient";
+import ProjectCard from "../component/ProjectCard";
 
 function FeedPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [projectCards, setProjectCards] = useState([]);
+  const [projectCard, setProjectCard] = useState([]);
 
   useEffect(() => {
     const fetchProjectCard = async () => {
@@ -16,11 +17,12 @@ function FeedPage() {
             )}`,
           },
         });
-        setProjectCards(res.data);
+        setProjectCard(res.data);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching projects:", error);
       }
     };
+
     fetchProjectCard();
   }, []);
 
@@ -30,7 +32,6 @@ function FeedPage() {
       const res = await backendClient.post(
         "/projects",
         { title, description },
-
         {
           headers: {
             Authorization: `Bearer ${JSON.parse(
@@ -40,22 +41,19 @@ function FeedPage() {
         }
       );
 
-      // Add new project to the existing feed instantly
-      setProjectCards((prev) => [...prev, res.data]);
-
-      // Clear form fields
+      setProjectCard((prev) => [...prev, res.data]);
       setTitle("");
       setDescription("");
     } catch (error) {
-      console.log(error);
+      console.error("Error creating project:", error);
     }
   };
 
   return (
-    <>
+    <main>
       <h1>Projects</h1>
 
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={title}
@@ -67,28 +65,17 @@ function FeedPage() {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Enter a description of your project"
+          placeholder="Enter a description"
         />
-        <button type="submit">Submit</button>
+        <input type="submit" value="Submit" />
       </form>
 
-      {/* Render project feed */}
-      <div style={{ marginTop: "20px" }}>
-        {projectCards.map((project, index) => (
-          <div
-            key={index}
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px",
-              marginBottom: "10px",
-            }}
-          >
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-          </div>
+      <div>
+        {projectCard.map((card) => (
+          <ProjectCard key={card.id} {...card} />
         ))}
       </div>
-    </>
+    </main>
   );
 }
 
